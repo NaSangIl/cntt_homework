@@ -123,78 +123,21 @@ public class CoinExchangeController {
 //	public static void main(String[] args) {
 //		
 //		ArrayList<String> result = new ArrayList<String>();
-////		int[] coinTp = new int[] {1, 2, 3};
-////		int[] coinCnt = new int[] {2, 2, 2};
-////		int money = 10;
-//		int[] coinTp = new int[] {10, 5, 1};
-//		int[] coinCnt = new int[] {2, 3, 5};
-//		int money = 20;
+//		int[] coinTp = new int[] {3, 2, 1};
+//		int[] coinCnt = new int[] {2, 2, 2};
+//		int money = 10;
+////		int[] coinTp = new int[] {10, 5, 1};
+////		int[] coinCnt = new int[] {2, 3, 5};
+////		int money = 20;
 //		
 //		int tmpSum = 0;
 //		String tmpStr = "";
 //		boolean startFlag = true;
-//		//동전 타입만큼
-//		for(int i=0; i<coinTp.length; i++) {
-//			
-//			tmpSum = 0;
-//			tmpStr = "";
-//			startFlag = true;
-//			//동전 타입 가지수 체크
-//			for(int j=0; j<coinTp.length; j++) {
+//		
+//		int coinTpCnt = coinTp.length;
 //
-//				//동전 갯수 만큼
-//				for(int k=0; k<coinCnt[j]; k++) {
-//
-//					if(startFlag) {
-//						tmpSum += coinTp[i] + coinTp[j];
-//					}else {
-//						tmpSum += coinTp[j];
-//					}
-//					
-//					if(tmpSum < money) {
-//						if(startFlag) {
-//							if("".equals(tmpStr)) {
-//								tmpStr += "" + coinTp[i] + "+" + coinTp[j];
-//							}else {
-//								tmpStr += "+" + coinTp[i] + "+" + coinTp[j];
-//							}
-//							
-//						}else {
-//							if("".equals(tmpStr)) {
-//								tmpStr += "" + coinTp[j];
-//							}else {
-//								tmpStr += "+" + coinTp[j];
-//							}
-//						}
-//						startFlag = false;
-//					}else if(tmpSum == money){
-//						if(startFlag) {
-//							if("".equals(tmpStr)) {
-//								tmpStr += "" + coinTp[i] + "+" + coinTp[j];
-//							}else {
-//								tmpStr += "+" + coinTp[i] + "+" + coinTp[j];
-//							}
-//						}else {
-//							if("".equals(tmpStr)) {
-//								tmpStr += "" + coinTp[j];
-//							}else {
-//								tmpStr += "+" + coinTp[j];
-//							}
-//						}
-//						result.add(tmpStr);
-//						startFlag = true;
-//						k=0;
-//						tmpSum = 0;
-//						tmpStr = "";
-////						k = coinCnt[j]-1;
-//					}else {
-//						startFlag = false;
-//						tmpSum -= coinTp[j];
-//						//k = coinCnt[j]-1;
-//					}
-//				}
-//			}
-//		}
+//		
+//		System.out.println(countCombinations(money, coinTp , 0, 0 , new Integer[coinTp[0]+1][money+coinTp[0]]));
 //		
 //		//결과 출력
 //		for(String rst:result) {
@@ -202,5 +145,37 @@ public class CoinExchangeController {
 //			//rstStrArr
 //			System.out.println(rst);
 //		}
+//	}
+//	
+//	private static int countCombinations(Integer targetAmount, int[] coinTp, int currentAmount, int coin, Integer[][] memory){
+//
+//		//Comment below if block if you want to see the perf difference
+//		
+//	    if(memory[coin][currentAmount] != null){
+//	        return memory[coin][currentAmount];
+//	        
+//	    }
+//
+//	    if(currentAmount > targetAmount){
+//	        memory[coin][currentAmount] = 0;
+//	        return 0;
+//	    }
+//	    
+//	    if(currentAmount == targetAmount){
+//	        return 1;
+//	    }      
+//	    
+//	    int count = 0;
+//	    for(int i=0; i< coinTp.length ; i++) {
+//	    	int selectedCoin = coinTp[i];
+//	    		
+//    		if(selectedCoin >= coin){
+//    			count += countCombinations(targetAmount, coinTp, currentAmount+selectedCoin, selectedCoin, memory);
+//    			if(count > 0 ) {
+//    			}
+//    		}
+//	    }        
+//	    memory[coin][currentAmount] = count;        
+//	    return count;
 //	}
 }
